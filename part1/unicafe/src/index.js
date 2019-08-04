@@ -24,6 +24,11 @@ const App = () => {
         <p>Good: {good}</p>
         <p>Neutral: {neutral}</p>
         <p>Bad: {bad}</p>
+        <p>all: {all} </p>
+        <p>Average: {all / 3}</p>
+        <p>
+          Positive feeback: {isNaN(good / all) ? "0" : (good / all) * 100} %
+        </p>
       </div>
     </>
   );
