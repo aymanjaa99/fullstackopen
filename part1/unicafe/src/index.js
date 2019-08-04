@@ -7,20 +7,24 @@ const Button = ({ text, handleClick }) => {
 
 const Statistics = ({ good, neutral, bad }) => {
   const all = good + bad + neutral;
-  return (
-    <>
-      <div>
-        <p>Good: {good}</p>
-        <p>Neutral: {neutral}</p>
-        <p>Bad: {bad}</p>
-        <p>all: {all} </p>
-        <p>Average: {all / 3}</p>
-        <p>
-          Positive feeback: {isNaN(good / all) ? "0" : (good / all) * 100} %
-        </p>
-      </div>
-    </>
-  );
+  if (all === 0) {
+    return <p>No feedback given</p>;
+  } else {
+    return (
+      <>
+        <div>
+          <p>Good: {good}</p>
+          <p>Neutral: {neutral}</p>
+          <p>Bad: {bad}</p>
+          <p>all: {all} </p>
+          <p>Average: {all / 3}</p>
+          <p>
+            Positive feeback: {isNaN(good / all) ? "0" : (good / all) * 100} %
+          </p>
+        </div>
+      </>
+    );
+  }
 };
 const App = () => {
   // save clicks of each button to own state
