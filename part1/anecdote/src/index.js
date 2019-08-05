@@ -19,17 +19,33 @@ const App = props => {
     setVotes(copy);
     console.log(votes);
   };
+
+  let mostVotes = Math.max.apply(Math, votes);
+  let mostVotedIndex = votes.indexOf(mostVotes);
+
   return (
-    <div>
-      <p>{props.anecdotes[selected]}</p>
-      <p>this anecdote has {votes[selected]} votes</p>
+    <>
       <div>
-        <button onClick={() => _handleClick(0, props.anecdotes.length)}>
-          next anecdote
-        </button>
-        <button onClick={_voteOnAnecdote}>vote</button>
+        <h1>Anecdote of the day</h1>
+        <div>
+          <p>{props.anecdotes[selected]}</p>
+          <p>this anecdote has {votes[selected]} votes</p>
+          <div>
+            <button onClick={() => _handleClick(0, props.anecdotes.length)}>
+              next anecdote
+            </button>
+            <button onClick={_voteOnAnecdote}>vote</button>
+          </div>
+        </div>
       </div>
-    </div>
+      <div>
+        <h1>Most voted anecdote</h1>
+        <div>
+          <p>{props.anecdotes[mostVotedIndex]}</p>
+          <p>this anecdote has {mostVotes} votes</p>
+        </div>
+      </div>
+    </>
   );
 };
 
