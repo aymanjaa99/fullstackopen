@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 
 const App = props => {
   const [selected, setSelected] = useState(0);
+  const [votes, setVotes] = useState([0, 0, 0, 0, 0, 0]);
 
   const _handleClick = (min, max) => {
     console.log("_handleClick called");
@@ -10,14 +11,23 @@ const App = props => {
     setSelected(randomNumber);
     console.log("random number: ", randomNumber, " || selected: ", selected);
   };
+
+  const _voteOnAnecdote = () => {
+    const copy = [...votes];
+    copy[selected] += 1;
+
+    setVotes(copy);
+    console.log(votes);
+  };
   return (
     <div>
       <p>{props.anecdotes[selected]}</p>
-
+      <p>this anecdote has {votes[selected]} votes</p>
       <div>
         <button onClick={() => _handleClick(0, props.anecdotes.length)}>
           next anecdote
         </button>
+        <button onClick={_voteOnAnecdote}>vote</button>
       </div>
     </div>
   );
