@@ -3,20 +3,19 @@ import ReactDOM from "react-dom";
 
 const App = props => {
   const [selected, setSelected] = useState(0);
-  function getRandomAnecdote(min, max) {
-    let ancedote_number = Math.floor(Math.random() * (max - min) + min);
-    if (ancedote_number === selected) {
-      ancedote_number = Math.floor(Math.random() * (max - min) + min);
-    }
-    console.log(ancedote_number);
-    setSelected(ancedote_number);
-  }
 
+  const _handleClick = (min, max) => {
+    console.log("_handleClick called");
+    let randomNumber = Math.floor(Math.random() * (max - min)) + min;
+    setSelected(randomNumber);
+    console.log("random number: ", randomNumber, " || selected: ", selected);
+  };
   return (
     <div>
-      {props.anecdotes[selected]}
+      <p>{props.anecdotes[selected]}</p>
+
       <div>
-        <button onClick={() => getRandomAnecdote(0, props.anecdotes.length)}>
+        <button onClick={() => _handleClick(0, props.anecdotes.length)}>
           next anecdote
         </button>
       </div>
