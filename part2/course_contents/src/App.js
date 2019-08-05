@@ -28,9 +28,7 @@ const App = () => {
 
   return (
     <div>
-      <ul>
-        <Course course={course} />
-      </ul>
+      <Course course={course} />
     </div>
   );
 };
