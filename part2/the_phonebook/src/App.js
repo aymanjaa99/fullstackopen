@@ -4,16 +4,30 @@ const App = () => {
   const [persons, setPersons] = useState([{ name: "Arto Hellas" }]);
   const [newName, setNewName] = useState("");
 
+  const isNamePresent = () => {
+    let name = newName;
+    let present = null;
+    persons.map(p => {
+      if (p.name === name) {
+        return (present = true);
+      } else {
+        return (present = false);
+      }
+    });
+    return present;
+  };
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(event);
-
-    let person = {
-      name: newName
-    };
-
-    setPersons(persons.concat(person));
-    setNewName("");
+    let name = newName;
+    if (isNamePresent()) {
+      alert("name already present");
+    } else {
+      let person = {
+        name: name
+      };
+      setPersons(persons.concat(person));
+      console.log("DONE!");
+    }
   };
 
   const handleChange = event => {
