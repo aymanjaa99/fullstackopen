@@ -12,7 +12,7 @@ const Search = ({ countries, setCountries }) => {
       axios
         .get("https://restcountries.eu/rest/v2/name/" + query)
         .then(response => {
-          setCountries(response.data);
+          setTimeout(() => setCountries(response.data), 2000);
           console.log(response.data);
         })
         .catch(error => {
