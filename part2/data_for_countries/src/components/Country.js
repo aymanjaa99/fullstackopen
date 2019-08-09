@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-
+import React from "react";
+import Weather from "./Weather";
 const Country = ({ country }) => {
   //
   if (country.length === 1) {
     return (country = country[0]);
-  } else {
-    console.log("display list");
   }
   const list_languages = () => {
     console.log("Country: ", country.languages);
@@ -26,7 +24,15 @@ const Country = ({ country }) => {
       <h2>Languages:</h2>
       <ul>{list_languages()}</ul>
       <div>
-        <img src={country.flag} alt={"Flag of " + country.name} />
+        <img
+          src={country.flag}
+          alt={"Flag of " + country.name}
+          className="flag"
+        />
+      </div>
+      <div>
+        <h2> Weather in {country.capital}</h2>
+        <Weather capital={country.capital} />
       </div>
     </div>
   );

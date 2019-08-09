@@ -17,9 +17,7 @@ const List = ({ countries }) => {
   let countries_list = countries.map(country => (
     <div key={country.name}>
       <li key={country.numericCode}>{country.name}</li>
-      <button onClick={() => handleClick(country)} on>
-        show
-      </button>
+      <button onClick={() => handleClick(country)}>show</button>
       {show.includes(country.numericCode) ? <Country country={country} /> : ""}
     </div>
   ));

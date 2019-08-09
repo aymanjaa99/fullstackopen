@@ -7,18 +7,20 @@ const Search = ({ countries, setCountries }) => {
     setQuery(e.target.value);
   };
   const fetch_data = () => {
-    console.log("fetching data");
+    let source = axios.CancelToken.source();
     if (query !== "") {
       axios
-        .get("https://restcountries.eu/rest/v2/name/" + query)
+        .get("https://restcountries.eu/rest/v2/name/" + query, {
+          cancelToken: source.token
+        })
         .then(response => {
-          setTimeout(() => setCountries(response.data), 2000);
+          setCountries(response.data);
           console.log(response.data);
         })
         .catch(error => {
           console.error(error);
         });
-    } else {
+      return () => source.cancel();
     }
   };
 
