@@ -15,19 +15,19 @@ const Persons = ({ filtered, persons }) => {
     if (filtered.length === 0 || filtered === null || filtered === []) {
       return persons.map(person => (
         <div key={person.name}>
-          <li>
+          <li className="button">
             {person.name} : {person.number}
           </li>
-          <button onClick={() => removePerson(person.id)} />
+          <button onClick={() => removePerson(person.id)}>delete</button>
         </div>
       ));
     } else {
       return filtered.map(person => (
         <div key={person.name}>
-          <li>
+          <li className="button">
             {person.name} : {person.number}
           </li>
-          <button onClick={() => removePerson(person.id)} />
+          <button onClick={() => removePerson(person.id)}>delete</button>
         </div>
       ));
     }
