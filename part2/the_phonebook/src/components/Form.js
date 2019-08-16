@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const Form = ({ persons, setPersons }) => {
   const [newName, setNewName] = useState("");
@@ -35,7 +36,10 @@ const Form = ({ persons, setPersons }) => {
         name: name,
         number: number
       };
-      setPersons(persons.concat(person));
+
+      axios.post("http://localhost:3001/persons", person).then(res => {
+        return setPersons(persons.concat(res.data)), setNewNumber("");
+      });
       console.log("DONE! : ", persons);
     }
   };
