@@ -12,7 +12,7 @@ const App = () => {
     personService.getAll().then(initialNotes => {
       setPersons(initialNotes);
     });
-  }, []);
+  }, [persons]);
   return (
     <>
       <Filter persons={persons} setFiltered={setFiltered} />

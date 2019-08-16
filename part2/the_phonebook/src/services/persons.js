@@ -15,4 +15,8 @@ const create = newObj => {
   });
 };
 
-export default { getAll: getAll, create: create };
+const remove = id => {
+  console.log("DELETED");
+  return axios.delete(baseUrl + "/" + id);
+};
+export default { getAll: getAll, create: create, delete: remove };
