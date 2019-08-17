@@ -53,7 +53,9 @@ const Form = ({ persons, setPersons }) => {
   return (
     <div>
       <h2>Add a new</h2>
-      {notification !== "null" && <Notification notification={notification} />}
+      {notification !== "null" && (
+        <Notification notification={notification} type="success" />
+      )}
       <form onSubmit={handleSubmit}>
         <div>
           name: <input value={newName} onChange={handleChange} />

@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import personsService from "../services/persons";
+import Notification from "./Notification";
 const Persons = ({ filtered, persons }) => {
+  const [notification, setNotification] = useState(null);
   const removePerson = id => {
     if (
       window.confirm("Are you sure you want to permanently delete this person?")
     ) {
-      personsService.delete(id).then(() => {
-        let removeIndex = persons.map(p => p.id).indexOf(id);
-        persons.splice(removeIndex, 1);
-      });
+      personsService
+        .delete(id)
+        .then(() => {
+          let removeIndex = persons.map(p => p.id).indexOf(id);
+          persons.splice(removeIndex, 1);
+        })
+        .catch(res => {
+          setNotification(
+            "The persons has already been removed from our server"
+          );
+
+          setTimeout(() => setNotification(null), 5000);
+        });
     }
   };
   const row = () => {
@@ -35,6 +46,9 @@ const Persons = ({ filtered, persons }) => {
   return (
     <div>
       <h2>Numbers</h2>
+      {notification !== "null" && (
+        <Notification notification={notification} type="error" />
+      )}
       <ul>{row()}</ul>
     </div>
   );

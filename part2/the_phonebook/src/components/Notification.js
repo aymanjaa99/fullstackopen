@@ -1,11 +1,11 @@
 import React from "react";
 
-const Notification = ({ notification }) => {
+const Notification = ({ notification, type }) => {
   if (notification == null) {
     return null;
   } else {
     return (
-      <div className="notification">
+      <div className={type}>
         <p>{notification}</p>
       </div>
     );
