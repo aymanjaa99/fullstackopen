@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import personService from "../services/persons";
-
+import Notification from "./Notification";
 const Form = ({ persons, setPersons }) => {
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
+  const [notification, setNotification] = useState(null);
 
   const isNamePresent = () => {
     let name = newName;
@@ -39,13 +40,20 @@ const Form = ({ persons, setPersons }) => {
 
       personService.create(person).then(res => {
         setPersons(persons.concat(res));
+
         setNewNumber("");
       });
+
+      setNotification(
+        `${person.name} has been successfully added to your phonebook`
+      );
+      setTimeout(() => setNotification(null), 5000);
     }
   };
   return (
     <div>
       <h2>Add a new</h2>
+      {notification !== "null" && <Notification notification={notification} />}
       <form onSubmit={handleSubmit}>
         <div>
           name: <input value={newName} onChange={handleChange} />
